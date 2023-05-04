@@ -38,5 +38,5 @@ jobs:
             - [HELLO WORLD](https://github.com/orgs/github/projects/3)
           pinned: false
           close-previous: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.TOKEN }}
