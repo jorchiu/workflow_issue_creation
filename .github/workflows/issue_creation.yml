@@ -15,6 +15,7 @@ on:
 env:
   title: ${{ github.event.client_payload.title }}
   body: ${{ github.event.client_payload.body }}
+  labels: $ {{ github.event.client_payload.labels }}
 
 jobs:
   create_issue:
@@ -30,6 +31,6 @@ jobs:
           github_token: ${{ secrets.github_token }}
           title: ${{env.title}}
           body: |
-            ${{env.body}}
+            ${{ env.body }}
           labels: |
-            bug-fix
+            ${{ env.labels }}
