@@ -15,6 +15,10 @@ on:
 jobs:
   create_issue:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: 'read'
+      id-token: 'write'
+      issues: 'write'
     steps:
       - name: Get today's date
         id: date
@@ -24,7 +28,7 @@ jobs:
       - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.TOKEN }}
           title: ${{ steps.date.outputs.today }}
           body: |
             ## HELLO WORLD TODO
