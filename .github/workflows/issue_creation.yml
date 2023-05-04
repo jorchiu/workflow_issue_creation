@@ -14,29 +14,22 @@ on:
 
 jobs:
   create_issue:
-    name: Create Issue
     runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-      issues: write
     steps:
-      - name: Create Issue
+      - name: Get today's date
+        id: date
+        run: |
+          echo "::set-output name=today::$(date "+%Y/%m/%d")"
+
+      - name: Create an issue
         uses: actions-ecosystem/action-create-issue@v1
-        # uses: imjohnbo/issue-bot@3d96848fb5e9a4a473bb81ae62b4b4866a56e93a
         with:
-          assignees: "jorchiu"
-          labels: "Test issue"
-          title: "My issue"
+          github_token: ${{ secrets.github_token }}
+          title: ${{ steps.date.outputs.today }}
           body: |
-            ### Hello World Issue
+            ## HELLO WORLD TODO
 
-            - [ ] Hello World
-                    
-            ### Test
+            - [ ] HELLO WORLD
 
-            - [HELLO WORLD](https://github.com/orgs/github/projects/3)
-          pinned: false
-          close-previous: false
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          labels: |
+            bug-fix
