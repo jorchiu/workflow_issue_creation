@@ -12,6 +12,10 @@ on:
   repository_dispatch:
     types: ["issue-creation"]
 
+env:
+  title: ${{ github.event.client_payload.title }}
+  body: ${{ github.event.client_payload.body }}
+
 jobs:
   create_issue:
     runs-on: ubuntu-latest
@@ -29,8 +33,9 @@ jobs:
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.github_token }}
-          title: ${{ steps.date.outputs.today }}
+          title: $title
           body: |
+            $body
             ## HELLO WORLD TODO
 
             - [ ] HELLO WORLD
